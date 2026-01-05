@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 210 40% 96%;
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 222 30% 20%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 15%;
+    --ring: 188 100% 50%;
+
+    --radius: 0.25rem;
+
+    /* Neon accent colors */
+    --neon-gold: 45 100% 72%;
+    --neon-cyan: 188 100% 50%;
+    --neon-turquoise: 174 72% 56%;
+    --neon-amber: 45 100% 60%;
+    --neon-cream: 48 80% 70%;
+
+    /* Glow effects */
+    --glow-gold: 0 0 20px hsl(45 100% 72% / 0.5);
+    --glow-cyan: 0 0 20px hsl(188 100% 50% / 0.5);
+    --glow-turquoise: 0 0 20px hsl(174 72% 56% / 0.5);
+    --glow-amber: 0 0 20px hsl(45 100% 60% / 0.5);
+    --glow-cream: 0 0 20px hsl(48 80% 70% / 0.5);
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-orbitron antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative uppercase tracking-widest text-xs transition-all duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-[1px] transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link-gold:hover::after {
+    @apply bg-neon-gold;
+    box-shadow: var(--glow-gold);
+  }
+
+  .nav-link-cyan:hover::after {
+    @apply bg-neon-cyan;
+    box-shadow: var(--glow-cyan);
+  }
+
+  .nav-link-turquoise:hover::after {
+    @apply bg-neon-turquoise;
+    box-shadow: var(--glow-turquoise);
+  }
+
+  .nav-link-amber:hover::after {
+    @apply bg-neon-amber;
+    box-shadow: var(--glow-amber);
+  }
+
+  .nav-link-cream:hover::after {
+    @apply bg-neon-cream;
+    box-shadow: var(--glow-cream);
+  }
+
+  .video-overlay {
+    @apply absolute inset-0;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background) / 0.2) 0%,
+      hsl(var(--background) / 0.4) 50%,
+      hsl(var(--background) / 0.7) 100%
+    );
+  }
+
+  .banner-tag {
+    @apply px-4 py-2 text-[10px] uppercase tracking-[0.3em] border border-foreground/20;
+    background: hsl(var(--background) / 0.6);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Glassy Modern Sci-Fi Styles */
+  .glass-modal {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--background) / 0.85) 0%,
+      hsl(var(--secondary) / 0.9) 100%
+    );
+    backdrop-filter: blur(30px);
+    border: 1px solid hsl(var(--foreground) / 0.08);
+    box-shadow: 
+      0 0 60px hsl(var(--neon-cyan) / 0.1),
+      inset 0 1px 0 hsl(var(--foreground) / 0.1);
+  }
+
+  .glass-card {
+    background: hsl(var(--foreground) / 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--foreground) / 0.06);
+  }
+
+  .glass-button {
+    background: hsl(var(--foreground) / 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--foreground) / 0.1);
+  }
+
+  .glass-button:hover {
+    background: hsl(var(--foreground) / 0.1);
+    border-color: hsl(var(--neon-cyan) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2);
+  }
+
+  .glass-button-primary {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan) / 0.2) 0%,
+      hsl(var(--background) / 0.8) 100%
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    color: hsl(var(--foreground));
+    transition: all 0.3s ease;
+  }
+
+  .glass-button-primary:hover {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan) / 0.3) 0%,
+      hsl(var(--background) / 0.9) 100%
+    );
+    box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.3);
+    border-color: hsl(var(--neon-cyan) / 0.5);
+  }
+
+  .glass-input {
+    background: hsl(var(--foreground) / 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--foreground) / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .glass-input:focus {
+    border-color: hsl(var(--neon-cyan) / 0.5);
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.1);
+    outline: none;
+  }
+
+  .glass-nav {
+    background: hsl(var(--background) / 0.5);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(var(--foreground) / 0.05);
+  }
+}
+
+@layer utilities {
+  .text-glow-gold {
+    text-shadow: var(--glow-gold);
+  }
+
+  .text-glow-cyan {
+    text-shadow: var(--glow-cyan);
+  }
+
+  .text-glow-turquoise {
+    text-shadow: var(--glow-turquoise);
+  }
+}
+
+/* Sci-Fi Styles */
+.scifi-border {
+  position: center;
+  overflow: hidden;
+}
+
+.scifi-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--neon-cyan)), transparent);
+  animation: scifi-line 3s linear infinite;
+}
+
+.scifi-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--neon-cyan)), transparent);
+  animation: scifi-line 3s linear infinite reverse;
+}
+
+@keyframes scifi-line {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.scifi-card {
+  position: relative;
+  border: 1px solid hsl(var(--neon-cyan) / 0.2);
+  transition: all 0.3s ease;
+}
+
+.scifi-card:hover {
+  border-color: hsl(var(--neon-cyan) / 0.5);
+  box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2);
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
+}
+
+/* Hide scrollbar for timeline */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
