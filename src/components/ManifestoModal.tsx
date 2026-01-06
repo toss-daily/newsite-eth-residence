@@ -26,16 +26,16 @@ const ManifestoModal = ({ open, onOpenChange }: ManifestoModalProps) => {
           <p className="text-foreground/90 leading-relaxed">
             We believe in creating technology that serves humanity, not the other way around.
           </p>
-          <p className="text-foreground/90 leading-relaxed">
+          <p className="text-foreground/83 leading-relaxed">
             A space for builders who create with purpose. We're here to make our humble contribution for responsible d/acc.
           </p>
           
           <div className="pt-4 border-t border-foreground/30 blur-smoke">
             <p className="text-xs text-foreground/90 tracking-widest uppercase text-bold">
-              Build with intention · Tech for Human
+              Build with intention · Build to Sustain
             </p>
-            <p className="text-neon-cyan leading-relaxed text-sm py-1 font-medium">
-            Future is engineered.
+            <p className="text-neon-cyan/50 leading-relaxed text-sm py-1 font-medium">
+              Tech for Human
           </p>
           </div>
         </div>

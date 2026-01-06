@@ -9,7 +9,7 @@ const TopNav = () => {
             ETH · IOPIA
           </span>
           <span className="text-[8px] tracking-[0.35em] uppercase text-foreground/70" style={{ width: '100%' }}>
-            Builders Residence
+            Builders · Residence
           </span>
         </div>
       </Link>

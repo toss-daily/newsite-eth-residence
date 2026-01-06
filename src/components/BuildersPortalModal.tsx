@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Lock, User } from "lucide-react";
 import typingSoundtrack from "@/assets/quick-typing-soundtrack.mp3";
 import loadingSoundtrack from "@/assets/loading-access-soundtrack.mp3";
+import { heroAudioRef } from "@/components/VideoBackground";
 
 interface BuildersPortalModalProps {
   open: boolean;
@@ -29,7 +31,7 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
   const loadingAudioRef = useRef<HTMLAudioElement>(null);
   const isTypingRef = useRef(false);
 
-  // Handle typing sound
+  // Handle typing sound and lower hero volume
   const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, value: string) => {
     setter(value);
     
@@ -39,15 +41,24 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
         typingAudioRef.current.currentTime = 0;
         typingAudioRef.current.volume = 0.3;
         typingAudioRef.current.play().catch(() => {});
+        
+        // Lower hero soundtrack volume by 100% (85% + 15% more)
+        if (heroAudioRef) {
+          heroAudioRef.volume = 0.5 * 0; // Full reduction when typing
+        }
       }
     }
   };
 
-  // Pause typing sound when not typing
+  // Pause typing sound when not typing and restore hero volume
   const handleInputBlur = () => {
     if (typingAudioRef.current) {
       typingAudioRef.current.pause();
       isTypingRef.current = false;
+    }
+    // Restore hero soundtrack volume
+    if (heroAudioRef) {
+      heroAudioRef.volume = 0.5;
     }
   };
 
@@ -60,6 +71,10 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
         if (typingAudioRef.current) {
           typingAudioRef.current.pause();
           isTypingRef.current = false;
+        }
+        // Restore hero soundtrack volume
+        if (heroAudioRef) {
+          heroAudioRef.volume = 0.5;
         }
       }, 200);
     };
@@ -200,7 +215,7 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
             <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/40" />
             <Input
               type="text"
-              placeholder="Key name"
+              placeholder="Username"
               value={username}
               onChange={(e) => handleInputChange(setUsername, e.target.value)}
               onBlur={handleInputBlur}
@@ -250,8 +265,8 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="glass-modal border-neon-cyan/20 max-w-md scifi-border">
         {/* Audio elements */}
-        <audio ref={typingAudioRef} src={typingSoundtrack} loop />
-        <audio ref={loadingAudioRef} src={loadingSoundtrack} />
+        <audio ref={typingAudioRef} src={typingSoundtrack} loop preload="auto" />
+        <audio ref={loadingAudioRef} src={loadingSoundtrack} preload="auto" />
         
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-widest uppercase text-foreground flex items-center gap-3">

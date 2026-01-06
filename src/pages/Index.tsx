@@ -58,7 +58,7 @@ const Index = () => {
           <div className="max-w-3xl px-8 text-center">
             <p className="text-xs md:text-sm tracking-[0.3em] text-foreground/90 uppercase leading-relaxed">
               <IntroTypeWriter 
-                text="WHAT IF WE CREATE TECH WE DIDN'T THINK WE WOULD" 
+                text="WHAT IF WE CREATE TECH WE DIDN'T THINK WE WOULD " 
                 onComplete={handleIntroComplete}
               />
             </p>
