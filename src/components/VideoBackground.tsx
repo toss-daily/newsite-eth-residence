@@ -47,7 +47,7 @@ const VideoBackground = () => {
       {/* Subtle Mute/Unmute Toggle Button */}
       <button
         onClick={toggleMute}
-        className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full glass-button transition-all duration-300 hover:scale-110 opacity-60 hover:opacity-100"
+        className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full glass-button transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? (
@@ -55,6 +55,7 @@ const VideoBackground = () => {
         ) : (
           <Volume2 className="w-4 h-4 text-foreground/80" />
         )}
+      
         mute
       </button>
     </div>
