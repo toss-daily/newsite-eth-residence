@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
-import journeySoundtrack from "@/assets/journey-soundtrack.mp3";
+// import journeySoundtrack from "@/assets/journey-soundtrack.mp3";
 
 const timelineEvents = [
   {
@@ -151,9 +151,7 @@ const HistoryPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Journey Soundtrack */}
-      <audio ref={audioRef} src={journeySoundtrack} loop />
-
+      {/* Journey Soundtrack <audio ref={audioRef} src={journeySoundtrack} loop /> */}
       {/* Top Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-transparent">
         <Link to="/" className="text-foreground">

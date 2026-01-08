@@ -3,15 +3,15 @@ import { useState, useEffect, useCallback } from "react";
 const slides = [
   {
     title: "Builder Residence",
-    subtitle: "A sanctuary for those who build the future.",
+    subtitle: "A mini town for those who build the future.",
   },
   {
     title: "Infrastructure",
-    subtitle: "Creating foundations that last generations.",
+    subtitle: "Achitechting foundations that may serve a long time.",
   },
   {
     title: "Software Developers",
-    subtitle: "Crafting technology for purposes we didn't imagine.",
+    subtitle: "Creating tech for needs we didn't imagine before.",
   },
 ];
 
