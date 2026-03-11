@@ -216,7 +216,7 @@
 
 /* Sci-Fi Styles */
 .scifi-border {
-  position: center;
+  position: relative;
   overflow: hidden;
 }
 

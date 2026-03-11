@@ -14,7 +14,7 @@ interface TeamModalProps {
 const TeamModal = ({ open, onOpenChange }: TeamModalProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="glass-modal border-neon-cyan/20 max-w-3xl scifi-border">
+      <DialogContent className="glass-modal border-foreground/10 max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-widest uppercase text-foreground flex items-center gap-3">
             <Users className="w-5 h-5 text-neon-cyan" />

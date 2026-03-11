@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Lock, User } from "lucide-react";
-import typingSoundtrack from "@/assets/quick-typing-soundtrack.mp3";
+
 import loadingSoundtrack from "@/assets/loading-access-soundtrack.mp3";
 import { heroAudioRef } from "@/components/VideoBackground";
 
@@ -27,64 +26,26 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
   const [loadingProgress, setLoadingProgress] = useState(0);
   const navigate = useNavigate();
   
-  const typingAudioRef = useRef<HTMLAudioElement>(null);
   const loadingAudioRef = useRef<HTMLAudioElement>(null);
-  const isTypingRef = useRef(false);
 
-  // Handle typing sound and lower hero volume
-  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, value: string) => {
-    setter(value);
-    
-    if (typingAudioRef.current) {
-      if (!isTypingRef.current) {
-        isTypingRef.current = true;
-        typingAudioRef.current.currentTime = 0;
-        typingAudioRef.current.volume = 0.3;
-        typingAudioRef.current.play().catch(() => {});
-        
-        // Lower hero soundtrack volume by 100% (85% + 15% more)
-        if (heroAudioRef) {
-          heroAudioRef.volume = 0.5 * 0; // Full reduction when typing
-        }
+  // Lower hero soundtrack volume when modal opens, restore when it closes
+  useEffect(() => {
+    if (open) {
+      if (heroAudioRef) {
+        heroAudioRef.volume = 0.15;
+      }
+    } else {
+      if (heroAudioRef) {
+        heroAudioRef.volume = 0.5;
       }
     }
+  }, [open]);
+
+  // Handle typing sound and mute hero volume fully
+  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, value: string) => {
+    setter(value);
   };
 
-  // Pause typing sound when not typing and restore hero volume
-  const handleInputBlur = () => {
-    if (typingAudioRef.current) {
-      typingAudioRef.current.pause();
-      isTypingRef.current = false;
-    }
-    // Restore hero soundtrack volume
-    if (heroAudioRef) {
-      heroAudioRef.volume = 0.5;
-    }
-  };
-
-  // Stop typing on key up after delay
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    
-    const stopTyping = () => {
-      timeout = setTimeout(() => {
-        if (typingAudioRef.current) {
-          typingAudioRef.current.pause();
-          isTypingRef.current = false;
-        }
-        // Restore hero soundtrack volume
-        if (heroAudioRef) {
-          heroAudioRef.volume = 0.5;
-        }
-      }, 200);
-    };
-
-    window.addEventListener('keyup', stopTyping);
-    return () => {
-      window.removeEventListener('keyup', stopTyping);
-      clearTimeout(timeout);
-    };
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -218,7 +179,6 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
               placeholder="Username"
               value={username}
               onChange={(e) => handleInputChange(setUsername, e.target.value)}
-              onBlur={handleInputBlur}
               className="glass-input pl-10 pr-10"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -233,7 +193,7 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
               placeholder="Access Key"
               value={password}
               onChange={(e) => handleInputChange(setPassword, e.target.value)}
-              onBlur={handleInputBlur}
+              
               className="glass-input pl-10 pr-10"
             />
             <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -263,9 +223,8 @@ const BuildersPortalModal = ({ open, onOpenChange }: BuildersPortalModalProps) =
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="glass-modal border-neon-cyan/20 max-w-md scifi-border">
+      <DialogContent className="glass-modal border-foreground/10 max-w-md">
         {/* Audio elements */}
-        <audio ref={typingAudioRef} src={typingSoundtrack} loop preload="auto" />
         <audio ref={loadingAudioRef} src={loadingSoundtrack} preload="auto" />
         
         <DialogHeader>

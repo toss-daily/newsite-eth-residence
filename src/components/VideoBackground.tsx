@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import heroSoundtrack from "@/assets/hero-soundtrack.mp3";
@@ -14,9 +13,6 @@ const VideoBackground = () => {
     if (audioRef.current) {
       heroAudioRef = audioRef.current;
       audioRef.current.volume = 0.5;
-      audioRef.current.play().catch(() => {
-        // Autoplay blocked, user interaction needed
-      });
     }
 
     return () => {
@@ -44,19 +40,17 @@ const VideoBackground = () => {
       {/* Background gradient overlay */}
       <div className="video-overlay" />
 
-      {/* Subtle Mute/Unmute Toggle Button */}
+      {/* Mute/Unmute Toggle Button */}
       <button
         onClick={toggleMute}
-        className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full glass-button transition-all duration-300 hover:scale-110 opacity-90 hover:opacity-100"
+        className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-background/80 backdrop-blur-md border border-foreground/20 transition-all duration-300 hover:scale-110 hover:bg-background/90 shadow-lg"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? (
-          <VolumeX className="w-4 h-4 text-foreground/80" />
+          <VolumeX className="w-5 h-5 text-foreground" />
         ) : (
-          <Volume2 className="w-4 h-4 text-foreground/80" />
+          <Volume2 className="w-5 h-5 text-foreground" />
         )}
-      
-        mute
       </button>
     </div>
   );

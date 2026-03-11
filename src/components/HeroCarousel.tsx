@@ -2,17 +2,33 @@ import { useState, useEffect, useCallback } from "react";
 
 const slides = [
   {
-    title: "Builder Residence",
-    subtitle: "A mini town for those who build the future.",
+    title: "<ETHiopia>Builder Residence</>",
+    subtitle: "A sanctuary for those who build the future.",
   },
   {
-    title: "Infrastructure",
-    subtitle: "Achitechting foundations that may serve a long time.",
+    title: "Responsible Development",
+    subtitle: "",
+    fullTitle: "Production is the core driver engine. Privacy & Security is a priority. Decentralization is a must. Human-centeredness, nonnegotiable!",
+    link: "/residence"
   },
   {
-    title: "Software Developers",
-    subtitle: "Creating tech for needs we didn't imagine before.",
+    title: "Eth builders!",
+    subtitle: "Click here to apply.",
+    fullTitle: "Are you ready to run on Ethereum?",
+    link: "/apply-residence",
   },
+  /*
+  {
+    title: "Eth-d/accs",
+    subtitle: "Ethical & Responsible d/acc is the core driver engine. Privacy & Security is a priority. Decentralization is a must. Human-centeredness, nonnegotiable!",
+    fullTitle: "Eth-d/accs - Ethical & Responsible Ethereum d/accers in Ethiopia",
+  },
+  {
+    title: "Eth/accs!",
+    subtitle: "Click here to apply.",
+    fullTitle: "Eth/accs! Are you ready to d/acc on Ethereum?",
+    link: "/residence",
+  },*/
 ];
 
 // Typing animation component
@@ -39,7 +55,7 @@ const TypeWriter = ({ text, onComplete, speed = 50 }: { text: string; onComplete
 const LetterScramble = ({ text, duration = 2000 }: { text: string; duration?: number }) => {
   const [displayText, setDisplayText] = useState(text);
   const [isScrambling, setIsScrambling] = useState(true);
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
 
   useEffect(() => {
     if (!isScrambling) return;
@@ -91,7 +107,7 @@ const HeroCarousel = ({ isVisible, isFirstLoad }: HeroCarouselProps) => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
       setSlideAnimationComplete(false);
-    }, 6000);
+    }, 12000);
     return () => clearInterval(timer);
   }, [isVisible]);
 
@@ -129,11 +145,31 @@ const HeroCarousel = ({ isVisible, isFirstLoad }: HeroCarouselProps) => {
                 )
               )}
             </h1>
-            <p className={`text-foreground/70 text-sm md:text-base tracking-widest max-w-xl leading-relaxed transition-opacity duration-500 ${
-              slideAnimationComplete ? 'opacity-100' : 'opacity-0'
-            }`}>
-              {slide.subtitle}
-            </p>
+            {'fullTitle' in slide && slide.fullTitle && (
+              <p className={`text-foreground/85 text-xs md:text-sm tracking-widest mb-4 transition-opacity duration-500 ${
+                slideAnimationComplete ? 'opacity-100' : 'opacity-50'
+              }`}>
+                {slide.fullTitle}
+              </p>
+            )}
+            {'link' in slide && slide.link ? (
+              <a
+                href={slide.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-foreground/90 text-sm md:text-base tracking-widest max-w-xl leading-relaxed transition-opacity duration-500 underline underline-offset-4 hover:text-foreground ${
+                  slideAnimationComplete ? 'opacity-100' : 'opacity-50'
+                }`}
+              >
+                {slide.subtitle}
+              </a>
+            ) : (
+              <p className={`text-foreground/70 text-sm md:text-base tracking-widest max-w-xl leading-relaxed transition-opacity duration-500 ${
+                slideAnimationComplete ? 'opacity-100' : 'opacity-0'
+              }`}>
+                {slide.subtitle}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -141,7 +177,7 @@ const HeroCarousel = ({ isVisible, isFirstLoad }: HeroCarouselProps) => {
       {/* Core message */}
       <div className="absolute bottom-32 md:bottom-36 text-center px-8">
         <p className="text-[10px] md:text-xs tracking-[0.25em] text-foreground/70 uppercase">
-          What if we create tech we didn't think we would
+          What if we create the tech we didn't think we would? 
         </p>
       </div>
     </div>

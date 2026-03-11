@@ -8,8 +8,8 @@ const TopNav = () => {
           <span className="text-sm font-bold tracking-[0.5em] uppercase">
             ETH · IOPIA
           </span>
-          <span className="text-[8px] tracking-[0.35em] uppercase text-foreground/70" style={{ width: '100%' }}>
-            Builders · Residence
+          <span className="text-[8px] tracking-[0.35em] uppercase text-foreground/80" style={{ width: '100%' }}>
+            Builders  Residence
           </span>
         </div>
       </Link>

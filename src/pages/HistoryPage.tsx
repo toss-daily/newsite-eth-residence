@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
-// import journeySoundtrack from "@/assets/journey-soundtrack.mp3";
+import journeySoundtrack from "@/assets/journey-soundtrack.mp3";
 
 const timelineEvents = [
   {
@@ -30,7 +30,7 @@ const timelineEvents = [
     description: "Builder Residency, Hackathon & Conference. Small grant from EF for conference and hackathon. Multiple partners for the Builder Residence.",
   },
   {
-    year: "2026 Q?",
+    year: "2026 Q2",
     title: "V2.0",
     description: "Coming Soon.",
   },
@@ -43,6 +43,11 @@ const galleryImages = [
   { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200", alt: "Event" },
   { src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200", alt: "Workshop" },
   { src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1200", alt: "Presentation" },
+  { src: "/1.png", alt: "1" },
+  { src: "/2.png", alt: "2" },
+  { src: "/3.png", alt: "3" },
+  { src: "/4.png", alt: "4" },
+  { src: "/5.png", alt: "5" },
 ];
 
 const HistoryPage = () => {
@@ -51,18 +56,18 @@ const HistoryPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<'forward' | 'backward'>('forward');
   const timelineRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  // const audioRef = useRef<HTMLAudioElement>(null);
   const gallerySectionRef = useRef<HTMLDivElement>(null);
 
-  // Play journey soundtrack on mount
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.4;
-      audioRef.current.play().catch(() => {
-        // Autoplay blocked, user interaction needed
-      });
-    }
-  }, []);
+  // Journey soundtrack disabled for now
+  // useEffect(() => {
+  //   if (audioRef.current) {
+  //     audioRef.current.volume = 0.12; // 70% reduction from base
+  //     audioRef.current.play().catch(() => {
+  //       // Autoplay blocked, user interaction needed
+  //     });
+  //   }
+  // }, []);
 
   // Timeline animation - slower to match event timing
   useEffect(() => {
@@ -151,7 +156,9 @@ const HistoryPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Journey Soundtrack <audio ref={audioRef} src={journeySoundtrack} loop /> */}
+      {/* Journey Soundtrack - disabled for now */}
+      {/* <audio ref={audioRef} src={journeySoundtrack} loop /> */}
+
       {/* Top Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-transparent">
         <Link to="/" className="text-foreground">
@@ -243,7 +250,7 @@ const HistoryPage = () => {
             Gallery
           </h2>
           <p className="text-sm text-foreground/60">
-            Moments from our journey.
+            Moments from our Journey
           </p>
         </div>
 

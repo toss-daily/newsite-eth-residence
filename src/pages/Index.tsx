@@ -1,23 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import TopNav from "@/components/TopNav";
 import BottomNav from "@/components/BottomNav";
 import VideoBackground from "@/components/VideoBackground";
+import { heroAudioRef } from "@/components/VideoBackground";
 import HeroCarousel from "@/components/HeroCarousel";
 
 // Typing animation for intro
-const IntroTypeWriter = ({ text, onComplete }: { text: string; onComplete: () => void }) => {
+const IntroTypeWriter = ({ text, onComplete, onSoundtrackStart }: { text: string; onComplete: () => void; onSoundtrackStart: () => void }) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const soundtrackTriggered = useRef(false);
+
+  const charDelay = 120; // doubled from 60
+  const remainingTime = (text.length - currentIndex) * charDelay;
+
+  useEffect(() => {
+    if (!soundtrackTriggered.current && remainingTime <= 1500 && currentIndex > 0) {
+      soundtrackTriggered.current = true;
+      onSoundtrackStart();
+    }
+  }, [remainingTime, currentIndex, onSoundtrackStart]);
 
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + text[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 60);
+      }, charDelay);
       return () => clearTimeout(timeout);
     } else {
-      // Wait a moment after typing completes
       const completeTimeout = setTimeout(() => {
         onComplete();
       }, 800);
@@ -46,6 +57,13 @@ const Index = () => {
     }, 500);
   };
 
+  const handleSoundtrackStart = useCallback(() => {
+    if (heroAudioRef) {
+      heroAudioRef.volume = 0.5;
+      heroAudioRef.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <div className="relative h-screen overflow-hidden bg-background">
       <VideoBackground />
@@ -58,8 +76,9 @@ const Index = () => {
           <div className="max-w-3xl px-8 text-center">
             <p className="text-xs md:text-sm tracking-[0.3em] text-foreground/90 uppercase leading-relaxed">
               <IntroTypeWriter 
-                text="WHAT IF WE CREATE TECH WE DIDN'T THINK WE WOULD " 
+                text="WHAT IF WE CREATE THE TECH WE DIDN'T THINK WE WOULD?  " 
                 onComplete={handleIntroComplete}
+                onSoundtrackStart={handleSoundtrackStart}
               />
             </p>
           </div>
@@ -67,7 +86,7 @@ const Index = () => {
       )}
       
       {/* Main Content */}
-      <div className={`transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`transition-opacity duration-990 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
         <TopNav />
         <HeroCarousel isVisible={showContent} isFirstLoad={true} />
         <BottomNav />

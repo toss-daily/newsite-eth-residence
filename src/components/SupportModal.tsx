@@ -30,7 +30,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="glass-modal border-foreground/10 max-w-3xl scifi-border">
+      <DialogContent className="glass-modal border-foreground/10 max-w-3xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold tracking-widest uppercase text-foreground">
             Support
@@ -40,19 +40,19 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
           {/* Crypto Wallet Info - On Top */}
           <div className="space-y-4">
             <p className="text-xs tracking-widest text-foreground/70 uppercase">
-              Support us with Stablecoins
+              Support with Stablecoins
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="p-3 glass-card rounded-lg">
                 <p className="text-xs text-foreground/60 mb-1">USDC / USDT (Ethereum)</p>
                 <p className="text-xs font-mono text-foreground break-all">
-                  0xFF66d3fcBa8EF0c5DC5CF2d2c889abEEbAad37be
+                  0x1234...5678
                 </p>
               </div>
               <div className="p-3 glass-card rounded-lg">
                 <p className="text-xs text-foreground/60 mb-1">USDC (Solana)</p>
                 <p className="text-xs font-mono text-foreground break-all">
-                  AtGrhT3b2t3bvmffjCDuxdBAx7fhNR4ihNWMhtPJyJGk
+                  ABC123...XYZ789
                 </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
             {/* Join Us Form */}
             <div className="space-y-4">
               <p className="text-xs tracking-widest text-foreground/70 uppercase">
-                Text Us
+                Join Us
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
@@ -94,7 +94,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
                   className="glass-input"
                 />
                 <Textarea
-                  placeholder=" Tx ID for your support, or your message..."
+                  placeholder="e.g., Tx ID for your support, or your message..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="glass-input min-h-[80px]"
@@ -115,7 +115,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
               </p>
               <div className="space-y-3">
                 <a 
-                  href="https://t.me/yourgroup/General" 
+                  href="https://t.me/yourgroup" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 glass-card rounded-lg hover:bg-foreground/10 transition-colors group"
@@ -130,7 +130,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
                   <ExternalLink className="w-4 h-4 text-foreground/40 group-hover:text-foreground/70 transition-colors" />
                 </a>
                 <a 
-                  href="https://t.me/yourchannel/Announcements" 
+                  href="https://t.me/yourchannel" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 glass-card rounded-lg hover:bg-foreground/10 transition-colors group"
