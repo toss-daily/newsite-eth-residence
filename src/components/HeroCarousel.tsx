@@ -55,7 +55,7 @@ const TypeWriter = ({ text, onComplete, speed = 50 }: { text: string; onComplete
 const LetterScramble = ({ text, duration = 2000 }: { text: string; duration?: number }) => {
   const [displayText, setDisplayText] = useState(text);
   const [isScrambling, setIsScrambling] = useState(true);
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ<>?";
 
   useEffect(() => {
     if (!isScrambling) return;
