@@ -2,33 +2,39 @@ import { useState, useEffect, useCallback } from "react";
 
 const slides = [
   {
-    title: "<ETHiopia>Builder Residence</>",
-    subtitle: "A sanctuary for those who build the future.",
+    title: "<ION LAB />",
+    subtitle: "Public good network",
   },
   {
-    title: "Responsible Development",
+    title: "Ready for WEB 5.0?",
     subtitle: "",
-    fullTitle: "Production is the core driver engine. Privacy & Security is a priority. Decentralization is a must. Human-centeredness, nonnegotiable!",
-    link: "/residence"
+    fullTitle: "Decetralised Web of Digital Data Privacy",
+    link: "/"
   },
   {
-    title: "Eth builders!",
-    subtitle: "Click here to apply.",
-    fullTitle: "Are you ready to run on Ethereum?",
-    link: "/apply-residence",
-  },
-  /*
-  {
-    title: "Eth-d/accs",
-    subtitle: "Ethical & Responsible d/acc is the core driver engine. Privacy & Security is a priority. Decentralization is a must. Human-centeredness, nonnegotiable!",
-    fullTitle: "Eth-d/accs - Ethical & Responsible Ethereum d/accers in Ethiopia",
+    title: "Privacy as the default",
+    subtitle: "",
+    fullTitle: "Busy building/accelerating a the web where privacy is the default, not an afterthought.",
+    link: "/",
   },
   {
-    title: "Eth/accs!",
-    subtitle: "Click here to apply.",
-    fullTitle: "Eth/accs! Are you ready to d/acc on Ethereum?",
-    link: "/residence",
-  },*/
+    title: "Product for end users",
+    subtitle: "Detail",
+    fullTitle: "ZK verified end user products, with intent of making them open source after a while or on spot.",
+    link: "/bookdemo",
+  },
+  {
+    title: "Products for merchants",
+    subtitle: "",
+    fullTitle: "Privacy default APIs for retailers. Help to Start or Gear-up businesses with ready made API.",
+    link: "/bookdemo",
+  },
+  {
+    title: "Product for developers",
+    subtitle: "Project Detail",
+    fullTitle: "Libraries and SDKs with privacy as default feature.",
+    link: "/bookdemo",
+  },
 ];
 
 // Typing animation component
@@ -55,7 +61,7 @@ const TypeWriter = ({ text, onComplete, speed = 50 }: { text: string; onComplete
 const LetterScramble = ({ text, duration = 2000 }: { text: string; duration?: number }) => {
   const [displayText, setDisplayText] = useState(text);
   const [isScrambling, setIsScrambling] = useState(true);
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ<>?";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ</>?";
 
   useEffect(() => {
     if (!isScrambling) return;

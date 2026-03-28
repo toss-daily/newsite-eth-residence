@@ -6,16 +6,16 @@ const TopNav = () => {
       <Link to="/" className="text-foreground">
         <div className="flex flex-col">
           <span className="text-sm font-bold tracking-[0.5em] uppercase">
-            ETH · IOPIA
+            ION · LAB
           </span>
           <span className="text-[8px] tracking-[0.35em] uppercase text-foreground/80" style={{ width: '100%' }}>
-            Builders  Residence
+            .Velocity WEB 5.0    
           </span>
         </div>
       </Link>
       
-      <Link to="/residence" className="banner-tag hover:border-neon-cyan transition-colors duration-300">
-        Residence v2.0 — soon
+      <Link to="/bookdemo" className="banner-tag hover:border-neon-cyan transition-colors duration-300">
+        Demo - soon
       </Link>
     </nav>
   );

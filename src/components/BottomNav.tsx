@@ -14,8 +14,8 @@ const BottomNav = () => {
   const navItems = [
     { label: "Manifesto", colorClass: "nav-link-gold", onClick: () => setManifestoOpen(true) },
     { label: "Team", colorClass: "nav-link-turquoise", onClick: () => setTeamOpen(true) },
+    { label: "Builder", colorClass: "nav-link-cyan", onClick: () => setPortalOpen(true) },
     { label: "Support", colorClass: "nav-link-cream", onClick: () => setSupportOpen(true) },
-    { label: "Builder House", colorClass: "nav-link-cyan", onClick: () => setPortalOpen(true) },
     { label: "History", colorClass: "nav-link-cyan", href: "/history" },
   ];
 

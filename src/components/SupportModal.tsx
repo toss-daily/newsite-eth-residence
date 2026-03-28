@@ -44,7 +44,7 @@ const SupportModal = ({ open, onOpenChange }: SupportModalProps) => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="p-3 glass-card rounded-lg">
-                <p className="text-xs text-foreground/60 mb-1">USDC / USDT (Ethereum)</p>
+                <p className="text-xs text-foreground/60 mb-1">USDC / USDT (Ethereum L! and L2s)</p>
                 <p className="text-xs font-mono text-foreground break-all">
                   0x1234...5678
                 </p>
